@@ -11,6 +11,7 @@ import UIKit
 class StartViewController: UIViewController {
     
     let storyboardID: String = "GameViewController"
+    let uiNavigationCustomController = UINavigationCustomController()//UINavigationCustomControllerのインスタンスを作成→変数に格納
     
     @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var rankingButton: UIButton!
@@ -40,6 +41,15 @@ class StartViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Game", bundle: Bundle.main)//①先ずは遷移先のStoryboardを取ってくる
         let gameViewController = storyboard.instantiateViewController(withIdentifier: storyboardID)//②画面遷移先のViewControllerを取ってくる！
         navigationController?.pushViewController(gameViewController, animated: true)//取って来たViewControllerにpushで画面遷移！
+        
+        ///これもうまくワークせん。なんで？カスタムクラスの作り方が間違っている？運用の仕方が間違えている？
+//        uiNavigationCustomController.pushViewController(gameViewController, animated: true)
+        
+        ///これもよく分からんなあ...ViewControllerが着いて来てない？
+//        let modalViewController = UIViewController()
+//        let navigationController2 = UINavigationController(rootViewController: modalViewController)
+//        present(navigationController2, animated: true , completion: nil)
+        
     }
     
     //RankingButtonが押された時に呼ばれる関数
