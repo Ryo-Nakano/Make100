@@ -110,7 +110,7 @@
                         <viewLayoutGuide key="safeArea" id="pES-Pd-MFc"/>
                     </view>
                     <connections>
-                        <outlet property="CalcLabel" destination="0Gg-ji-beS" id="gEo-a6-rAb"/>
+                        <outlet property="calcLabel" destination="0Gg-ji-beS" id="BiE-2b-1Ej"/>
                         <outlet property="resultLabel" destination="k7A-Mo-bjp" id="SjH-Pg-yjp"/>
                     </connections>
                 </viewController>

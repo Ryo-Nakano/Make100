@@ -17,7 +17,8 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let firstNum: Int = generateRandomNumber(min: -20, max: 20)
+        let firstNum: Int = generateRandomNumber(min: 0, max: 40, delta: 20)//初期値として-20から20の整数取得
+        calcLabel.text = String(firstNum)
         
 
     }
@@ -29,19 +30,35 @@ class GameViewController: UIViewController {
         var resultNum = Int(resultLabel.text!)
         resultNum = resultNum! + calNum!//計算
         resultLabel.text = String(resultNum!)//計算結果をreslutLabelに反映
+        
+        calcLabel.text = String(generateRandomNumber(min: 0, max: 40, delta: 20))//計算と同時に次の数字をランダム表示
     }
     
     //『-』ボタン押した時のアクション
     @IBAction func MinusButton() {
+        print("Pushed MinusButton")
+        let calNum =  Int(calcLabel.text!)
+        var resultNum = Int(resultLabel.text!)
+        resultNum = resultNum! - calNum!//計算
+        resultLabel.text = String(resultNum!)//計算結果をreslutLabelに反映
+        
+        calcLabel.text = String(generateRandomNumber(min: 0, max: 40, delta: 20))//計算と同時に次の数字をランダム表示
     }
     
     //『×』ボタン押した時のアクション
     @IBAction func MultipleButton() {
+        print("Pushed MultipleButton")
+        let calNum =  Int(calcLabel.text!)
+        var resultNum = Int(resultLabel.text!)
+        resultNum = resultNum! * calNum!//計算
+        resultLabel.text = String(resultNum!)//計算結果をreslutLabelに反映
+        
+        calcLabel.text = String(generateRandomNumber(min: 0, max: 40, delta: 20))//計算と同時に次の数字をランダム表示
     }
     
-    //乱数を発生させて、Int型で返してくれるメソッド
-    func generateRandomNumber(min: UInt32, max: UInt32) -> Int {//maxからminの範囲の乱数をInt型で返してくれる
-        return Int(arc4random_uniform(UInt32(max - min + 1)) + min)
+    //乱数を発生させて、Int型で返してくれるメソッド(deltaで数字の調整できる)
+    func generateRandomNumber(min: UInt32, max: UInt32, delta: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(max - min + 1)) + min) - delta
     }
     
     // MARK: カスタムボタンの定義
