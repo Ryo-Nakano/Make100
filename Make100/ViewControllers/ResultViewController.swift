@@ -18,6 +18,7 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
 
         ButtonCustomize(button: reMakeButton)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)//NavigationBarを隠す
     }
     
     
@@ -34,6 +35,7 @@ class ResultViewController: UIViewController {
         //画面遷移のコード
         let storyboard = UIStoryboard(name: "Start", bundle: Bundle.main)//①先ずは遷移先のStoryboardを取ってくる
         let startViewController = storyboard.instantiateViewController(withIdentifier: storyboardID)//②画面遷移先のViewControllerを取ってくる！
+        //上の2個はちゃんと取ってこれてる？
         navigationController?.pushViewController(startViewController, animated: true)//取って来たViewControllerにpushで画面遷移！
     }
 }

@@ -25,6 +25,8 @@ class GameViewController: UIViewController {
         let firseResultNum: Int = generateRandomNumber(min: 0, max: 20, delta: 10)//初期値として-10から10の整数取得
         calcLabel.text = String(firstCalcNum)
         resultLabel.text = String(firseResultNum)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)//NavigationBar出す
     }
    
     ///===============各Buttonのアクション===============
@@ -80,18 +82,28 @@ class GameViewController: UIViewController {
     //クリアしたかどうかをチェックする関数
     func CheckIsClear(num: Int) {
         print("Check isClear")
+        
         ///一時的に条件を『100より大きくなったら』にしている
         if(num > 100)//引数の値が100に等しかったら
         {
             print("Clear!!!!!")
-            self.navigationController?.setNavigationBarHidden(true, animated: true)//NavigationBarを隠す
+//            self.navigationController?.setNavigationBarHidden(true, animated: true)//NavigationBarを隠す
+            //これあっても画面遷移自体はする。
+            //が、これ一回やるともうそれ以降navigationbar出てこない。
+            //→StartViewControllerで再度NavigationBarを出すコード書く必要がある？
+            
+//            let nextViewController: NextViewController = NextViewController()
+//            let navigationController = UINavigationController(rootViewController: nextViewController)
+//            self.present(navigationController, animated: true, completion: nil)
 
             
             //画面遷移のコード
             let storyboard = UIStoryboard(name: "Result", bundle: Bundle.main)//①先ずは遷移先のStoryboardを取ってくる
             let resultViewController = storyboard.instantiateViewController(withIdentifier: storyboardID)//②画面遷移先のViewControllerを取ってくる！
-            navigationController?.pushViewController(resultViewController, animated: true)//取って来たViewControllerにpushで画面遷移！
-            ///push遷移はできるけどpopできんなあ...
+            let navigationController = UINavigationController(rootViewController: resultViewController)
+            self.present(navigationController, animated: true, completion: nil)
+            //rootViewControllerに移動先を指定してあげると、移動後もNavigationControllerが生きてる状態で遷移できた！
+            //→そもそもrootViewControllerとは...？
         }
     }
     
