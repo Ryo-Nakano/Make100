@@ -87,15 +87,6 @@ class GameViewController: UIViewController {
         if(num > 100)//引数の値が100に等しかったら
         {
             print("Clear!!!!!")
-//            self.navigationController?.setNavigationBarHidden(true, animated: true)//NavigationBarを隠す
-            //これあっても画面遷移自体はする。
-            //が、これ一回やるともうそれ以降navigationbar出てこない。
-            //→StartViewControllerで再度NavigationBarを出すコード書く必要がある？
-            
-//            let nextViewController: NextViewController = NextViewController()
-//            let navigationController = UINavigationController(rootViewController: nextViewController)
-//            self.present(navigationController, animated: true, completion: nil)
-
             
             //画面遷移のコード
             let storyboard = UIStoryboard(name: "Result", bundle: Bundle.main)//①先ずは遷移先のStoryboardを取ってくる
